@@ -421,7 +421,7 @@ public class Portal {
 
         if (blockSpectatorMode && player.getGameMode() == GameMode.SPECTATOR) {
             player.sendMessage(
-                    PluginMessages.customPrefixFail + "\u00A7c You cannot enter a portal in spectator mode!");
+                    PluginMessages.customPrefixFail + "\u00A7c Portala ne moreš uporabiti v spectator načinu!");
             return false;
         }
 
@@ -443,7 +443,7 @@ public class Portal {
         if (!(permission == null || ((!invertPermission && player.hasPermission(permission)) || (invertPermission && !player.hasPermission(permission))) || player.isOp())) {
             if(!noMessage) {
                 player.sendMessage(
-                        PluginMessages.customPrefixFail + "\u00A7c You do not have permission to use this portal!");
+                        PluginMessages.customPrefixFail + "\u00A7c Nimaš dovoljenja za uporabo tega portala!");
                 failSound(player, portal);
                 if(doKnockback)
                     throwPlayerBack(player);
@@ -477,8 +477,9 @@ public class Portal {
                 }
                 if (diff < portalCooldown) {
                     int time = (portalCooldown - diff);
-                    player.sendMessage(ChatColor.RED + "Please wait " + ChatColor.YELLOW + time + ChatColor.RED
-                            + (time == 1 ? " second" : " seconds") + " until attempting to enter this portal again.");
+                    player.sendMessage(ChatColor.RED + "Preden ponovno uporabiš ta portal moraš počakati še " + ChatColor.YELLOW + time + ChatColor.RED + getSecondsFormat(time));
+                    //player.sendMessage(ChatColor.RED + "Preden ponovno uporabiš ta portal moraš počakati še " + ChatColor.YELLOW + time + ChatColor.RED
+                    //        + (time == 1 ? " sekundo" : " seconds"));
                     failSound(player, portal);
                     if(doKnockback)
                         throwPlayerBack(player);
@@ -502,8 +503,7 @@ public class Portal {
             String[] bungeeServers = portal.getBungee().split(",");
             String bungeeServer = bungeeServers[random.nextInt(bungeeServers.length)];
             if (showBungeeMessage) {
-                player.sendMessage(PluginMessages.customPrefix + "\u00A7a Attempting to warp to \u00A7e" + bungeeServer
-                        + "\u00A7a.");
+                player.sendMessage(PluginMessages.customPrefix + "\u00A7a Poskus teleportacije do \u00A7e" + bungeeServer + "\u00A7a.");
             }
 
             if(portal.hasArg("leavedesti")) {
@@ -622,6 +622,14 @@ public class Portal {
         }
 
         return warped;
+    }
+
+    private static String getSecondsFormat(int time) {
+        String str = "sekund";
+        if (time == 1) str = "sekunda";
+        else if (time == 2) str = "sekundi";
+        else if (time == 3 || time == 4) str = "sekunde";
+        return str;
     }
 
     private static void failSound(Player player, AdvancedPortal portal) {

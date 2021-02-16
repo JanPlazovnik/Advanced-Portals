@@ -164,10 +164,10 @@ public class Destination {
 
                 if (PORTAL_MESSAGE_DISPLAY == 1) {
                     player.sendMessage("");
-                    player.sendMessage(PluginMessages.customPrefix + "\u00A7a You have been warped to \u00A7e" + dest.replaceAll("_", " ") + "\u00A7a.");
+                    player.sendMessage(PluginMessages.customPrefix + "\u00A7f Teleportiran si bil do \u00A7a" + dest.replaceAll("_", " ") + "\u00A7f.");
                     player.sendMessage("");
                 } else if (PORTAL_MESSAGE_DISPLAY == 2 && !hideActionbar) {
-                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("\u00A7aYou have warped to \u00A7e" + dest.replaceAll("_", " ") + "\u00A7a."));
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("\u00A7fTeleportiran si bil do \u00A7a" + dest.replaceAll("_", " ") + "\u00A7f."));
                 }
 
                 Location newLoc = player.getLocation();
@@ -182,12 +182,12 @@ public class Destination {
 
                 return true;
             } else {
-                player.sendMessage(PluginMessages.customPrefixFail + "\u00A7c The destination you are trying to warp to seems to be linked to a world that doesn't exist!");
+                player.sendMessage(PluginMessages.customPrefixFail + "\u00A7c Destinacija do katere se poskušaš teleportirati je v svetu, ki ni več na voljo!");
                 plugin.getLogger().log(Level.SEVERE, "The destination '" + dest + "' is linked to the world "
                         + config.getConfig().getString(dest + ".world") + " which doesnt seem to exist any more!");
             }
         } else {
-            player.sendMessage(PluginMessages.customPrefix + "\u00A7c The destination you are currently attempting to warp to doesnt exist!");
+            player.sendMessage(PluginMessages.customPrefix + "\u00A7c Destinacija do katere se poskušaš teleportirati ne obstaja!");
             plugin.getLogger().log(Level.SEVERE, "The destination '" + dest + "' has just had a warp "
                     + "attempt and either the data is corrupt or that destination doesn't exist!");
         }

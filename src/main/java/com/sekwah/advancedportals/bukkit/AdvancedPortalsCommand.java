@@ -83,7 +83,7 @@ public class AdvancedPortalsCommand implements CommandExecutor, TabCompleter {
                     }
                 } else if (args.length == 1 && player.hasPermission("advancedportals.warp")) {
                     sendMenu(player, "Help Menu: Warp",
-                            "\u00A76/" + command + " warp <name> \u00A7a- teleport to warp name");
+                            "\u00A76/" + command + " warp <name> \u00A7a- teleportacija do warpa");
                 }
                 else {
                     sender.sendMessage(PluginMessages.customPrefixFail
@@ -326,7 +326,7 @@ public class AdvancedPortalsCommand implements CommandExecutor, TabCompleter {
                                     String destiPosX = desticonfig.getConfig().getString(destination + ".pos.X");
 
                                     if (!Portal.portalExists(portalName)) {
-
+                                        
                                         player.sendMessage("");
                                         player.sendMessage(PluginMessages.customPrefix
                                                 + "\u00A7e You have created a new portal with the following details:");
