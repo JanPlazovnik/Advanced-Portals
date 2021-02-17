@@ -456,7 +456,8 @@ public class Portal {
             int diff = (int) ((System.currentTimeMillis() - joinCD) / 1000);
             if (diff < joinCooldownDelay) {
                 int time = (joinCooldownDelay - diff);
-                player.sendMessage(ChatColor.RED + "There is " + ChatColor.YELLOW + time + ChatColor.RED + (time == 1 ? " second" : " seconds") + " join cooldown protection left.");
+                //player.sendMessage(ChatColor.RED + "There is " + ChatColor.YELLOW + time + ChatColor.RED + (time == 1 ? " second" : " seconds") + " join cooldown protection left.");
+                player.sendMessage(ChatColor.RED + "Preden ponovno uporabiš ta portal moraš počakati še " + ChatColor.YELLOW + time + ChatColor.RED + " " + getSecondsFormat(time));
                 failSound(player, portal);
                 if(doKnockback)
                     throwPlayerBack(player);
@@ -477,7 +478,7 @@ public class Portal {
                 }
                 if (diff < portalCooldown) {
                     int time = (portalCooldown - diff);
-                    player.sendMessage(ChatColor.RED + "Preden ponovno uporabiš ta portal moraš počakati še " + ChatColor.YELLOW + time + ChatColor.RED + getSecondsFormat(time));
+                    player.sendMessage(ChatColor.RED + "Preden ponovno uporabiš ta portal moraš počakati še " + ChatColor.YELLOW + time + " " + ChatColor.RED + getSecondsFormat(time));
                     //player.sendMessage(ChatColor.RED + "Preden ponovno uporabiš ta portal moraš počakati še " + ChatColor.YELLOW + time + ChatColor.RED
                     //        + (time == 1 ? " sekundo" : " seconds"));
                     failSound(player, portal);
